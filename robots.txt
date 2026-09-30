@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nyanchama-26.github.io/Valentine/sitemap.xml

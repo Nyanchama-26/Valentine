@@ -1,0 +1,98 @@
+/* Print stylesheet: recruiters still print portfolios. Strip chrome and
+   navigation, flatten the dark contact section to black-on-white, avoid
+   wasting ink, and make sure links are still traceable on paper. */
+
+@media print {
+  .site-header,
+  .mobile-menu,
+  .menu-toggle,
+  .header-actions,
+  .hero__actions,
+  .viewer,
+  .skip-link {
+    display: none !important;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  section {
+    padding: 18pt 0 !important;
+    break-inside: avoid;
+  }
+
+  .section-navy {
+    background: #fff !important;
+    color: #000 !important;
+    border-top: 2pt solid #000;
+    border-bottom: none;
+  }
+  .section-navy .section-title,
+  .section-navy .muted,
+  .section-navy .lede,
+  .contact-link,
+  .contact-link__label,
+  .contact-link__value {
+    color: #000 !important;
+  }
+  .contact-link { border-color: #000 !important; }
+  .contact-link__arrow { display: none; }
+
+  /* Show the actual URL after external/contact links since clicking
+     obviously doesn't work on paper. */
+  .contact-link[href^="mailto:"]::after,
+  .contact-link[href^="tel:"]::after {
+    content: none;
+  }
+
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #444 !important;
+  }
+
+  .btn { display: none !important; }
+
+  .hero { padding: 0 0 18pt !important; }
+  .hero__grid { grid-template-columns: 1fr auto !important; }
+  .hero__portrait-frame {
+    --portrait-size: 110pt !important;
+    border: 1pt solid #000 !important;
+    box-shadow: none !important;
+  }
+  .hero__portrait-frame::before { display: none !important; }
+
+  .field-grid, .spec-strip, .expertise-grid, .disciplines,
+  .edu-card, .research-card, .record-panel, .drawing-set, .timeline-item {
+    border-color: #000 !important;
+    background: #fff !important;
+    break-inside: avoid;
+  }
+  .field-grid, .expertise-grid, .disciplines { background: #000 !important; }
+  .field-grid > div, .expertise-grid__item, .disciplines__item {
+    background: #fff !important;
+  }
+
+  .drawing-set__thumbs { display: none !important; }
+  .drawing-set__label a::after { content: " " attr(href); font-size: 9pt; }
+
+  .site-footer { border-top: 2pt solid #000; }
+
+  a[href]:after { }
+}

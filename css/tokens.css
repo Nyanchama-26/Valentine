@@ -1,0 +1,107 @@
+:root {
+  /* Color: grounded in structural drawing conventions: paper, graphite ink,
+     drafting-line steel-blue as the single accent. No warm cream, no terracotta. */
+  --color-bg: #EFF1EE;
+  --color-surface: #FFFFFF;
+  --color-ink: #14181B;
+  --color-muted: #575F66;
+  --color-navy: #17293A;
+  --color-accent: #2B5F82;
+  --color-accent-soft: #E4EAEC;
+  --color-border: #D7DAD5;
+
+  /* Radius: sharp by default, like a drawn line; only small controls round. */
+  --radius-control: 3px;
+  --radius-thumb: 2px;
+
+  /* Layout */
+  --container: 1280px;
+  --pad-desktop: 32px;
+  --pad-tablet: 24px;
+  --pad-mobile: 16px;
+
+  /* Type: one grotesk family carrying both display and body weight. */
+  --font-ui: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-sm: 220ms;
+  --dur-md: 380ms;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; }
+
+h1, h2, h3, h4 { margin: 0; font-weight: 500; }
+
+p { margin: 0; }
+
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  width: min(100% - (var(--pad-mobile) * 2), var(--container));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .container { width: min(100% - (var(--pad-tablet) * 2), var(--container)); }
+}
+
+@media (min-width: 1200px) {
+  .container { width: min(100% - (var(--pad-desktop) * 2), var(--container)); }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-control);
+  z-index: 1000;
+  transition: top var(--dur-sm) var(--ease);
+  font-size: 14px;
+  font-weight: 600;
+}
+.skip-link:focus { top: 16px; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
